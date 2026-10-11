@@ -1,0 +1,13 @@
+flowchart TD
+    U["User input"] --> M{"Explicit mode"}
+    M -->|"CMD"| C["CMD: original input"]
+    M -->|"POSIX subset"| L["Thin Clink Lua adapter<br/>mode, request, completion"]
+    L --> P["Rust parser<br/>whole-line AST and static validation"]
+    P --> E["Rust executor<br/>ordered expansion and process IO"]
+    E --> N["Native Windows executables<br/>literal argv and concurrent pipes"]
+    E --> S["Versioned state result<br/>cwd, env delta, exit status"]
+    S -.-> A["Future parent-state adapter<br/>separate integration acceptance gate"]
+    A -.-> C
+    T["Declarative tool manifest<br/>executable plus fixed arguments"] --> E
+    style A stroke-dasharray: 5 5
+    style L stroke-dasharray: 5 5

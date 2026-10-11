@@ -1,0 +1,9 @@
+# Machine-local manifest. Copy to tools.tsv (ignored by Git).
+# Each non-comment line contains NAME<TAB>ABSOLUTE_EXE<TAB>OPTIONAL_FIXED_ARGUMENTS.
+# Tabs are literal delimiters; quotes are not stripped.
+# Only native .exe/.com targets are allowed. Use forward slashes in paths.
+# Leave this file empty except for comments to use builtins and PATH lookup.
+# Be explicit about conflicting Windows names such as sort.exe and find.exe.
+# Example (uncomment and replace the path):
+# sort	C:/path/to/coreutils/sort.exe
+# find	C:/path/to/busybox.exe	find

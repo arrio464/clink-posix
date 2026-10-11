@@ -1,0 +1,4476 @@
+{
+  "date": "2026-10-11 20:46:36 +0800",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+  "logical_processors": 16,
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+  "warmups": 3,
+  "samples_per_case": 25,
+  "random_seed": 20261011,
+  "method": "warm launches, randomized case order, NUL stdin/stdout, executor-only CPU/memory/IO counters; latency includes descendants; no Clink adapter or parent-state synchronization",
+  "binary_bytes": 502272,
+  "sha256": {
+    "rust_executable": "bca34d10a35338af76ef51a64271a3db7d67fdd062881073f1794823853cc155",
+    "machine_tool_manifest": "05fe1a199814bff1b84c4ce6705c5e4ab45b761379e2bf3f6ed503a9e1f02ac9",
+    "python_installed_helper": "2667d3a54c3407276ae4b313efd68d5d4e7b3f3e2da31b1c266f07950625dcf8",
+    "python_optimized_helper": "1027a565c3b71bfab02509ba2e4e77a284e4dd89c90a80fb16116e1b5865732f"
+  },
+  "results": {
+    "python_installed/builtin_echo": {
+      "median_ms": 182.252,
+      "p95_ms": 219.103,
+      "min_ms": 170.974,
+      "median_cpu_ms": 171.875,
+      "median_peak_working_set_mib": 20.199,
+      "median_peak_commit_mib": 13.762,
+      "median_read_bytes": 1870365,
+      "median_write_bytes": 10
+    },
+    "python_installed/native_sort": {
+      "median_ms": 216.714,
+      "p95_ms": 279.696,
+      "min_ms": 205.857,
+      "median_cpu_ms": 203.125,
+      "median_peak_working_set_mib": 20.609,
+      "median_peak_commit_mib": 13.984,
+      "median_read_bytes": 5868061,
+      "median_write_bytes": 4
+    },
+    "python_installed/two_stage_pipeline": {
+      "median_ms": 222.4,
+      "p95_ms": 256.879,
+      "min_ms": 211.037,
+      "median_cpu_ms": 218.75,
+      "median_peak_working_set_mib": 21.363,
+      "median_peak_commit_mib": 14.602,
+      "median_read_bytes": 7363227,
+      "median_write_bytes": 4
+    },
+    "python_installed/command_substitution": {
+      "median_ms": 185.542,
+      "p95_ms": 229.57,
+      "min_ms": 173.221,
+      "median_cpu_ms": 171.875,
+      "median_peak_working_set_mib": 20.43,
+      "median_peak_commit_mib": 14.066,
+      "median_read_bytes": 1870371,
+      "median_write_bytes": 16
+    },
+    "python_installed/process_substitution": {
+      "median_ms": 260.429,
+      "p95_ms": 334.728,
+      "min_ms": 246.552,
+      "median_cpu_ms": 218.75,
+      "median_peak_working_set_mib": 20.66,
+      "median_peak_commit_mib": 14.008,
+      "median_read_bytes": 5488669,
+      "median_write_bytes": 4
+    },
+    "python_installed/4MiB_binary_pipeline": {
+      "median_ms": 235.635,
+      "p95_ms": 268.665,
+      "min_ms": 226.191,
+      "median_cpu_ms": 234.375,
+      "median_peak_working_set_mib": 21.254,
+      "median_peak_commit_mib": 14.613,
+      "median_read_bytes": 11881881,
+      "median_write_bytes": 4
+    },
+    "python_optimized_S/builtin_echo": {
+      "median_ms": 107.118,
+      "p95_ms": 118.947,
+      "min_ms": 101.127,
+      "median_cpu_ms": 93.75,
+      "median_peak_working_set_mib": 16.766,
+      "median_peak_commit_mib": 11.129,
+      "median_read_bytes": 954746,
+      "median_write_bytes": 6
+    },
+    "python_optimized_S/native_sort": {
+      "median_ms": 151.014,
+      "p95_ms": 188.524,
+      "min_ms": 142.5,
+      "median_cpu_ms": 125.0,
+      "median_peak_working_set_mib": 17.41,
+      "median_peak_commit_mib": 11.203,
+      "median_read_bytes": 5114362,
+      "median_write_bytes": 0
+    },
+    "python_optimized_S/two_stage_pipeline": {
+      "median_ms": 171.455,
+      "p95_ms": 215.93,
+      "min_ms": 162.395,
+      "median_cpu_ms": 171.875,
+      "median_peak_working_set_mib": 18.652,
+      "median_peak_commit_mib": 12.727,
+      "median_read_bytes": 6883400,
+      "median_write_bytes": 0
+    },
+    "python_optimized_S/command_substitution": {
+      "median_ms": 122.065,
+      "p95_ms": 138.229,
+      "min_ms": 114.449,
+      "median_cpu_ms": 109.375,
+      "median_peak_working_set_mib": 17.773,
+      "median_peak_commit_mib": 11.18,
+      "median_read_bytes": 1090115,
+      "median_write_bytes": 16
+    },
+    "python_optimized_S/process_substitution": {
+      "median_ms": 203.18,
+      "p95_ms": 231.952,
+      "min_ms": 192.694,
+      "median_cpu_ms": 156.25,
+      "median_peak_working_set_mib": 18.512,
+      "median_peak_commit_mib": 11.359,
+      "median_read_bytes": 4858265,
+      "median_write_bytes": 4
+    },
+    "python_optimized_S/4MiB_binary_pipeline": {
+      "median_ms": 183.453,
+      "p95_ms": 226.044,
+      "min_ms": 174.217,
+      "median_cpu_ms": 187.5,
+      "median_peak_working_set_mib": 18.566,
+      "median_peak_commit_mib": 12.742,
+      "median_read_bytes": 11402054,
+      "median_write_bytes": 0
+    },
+    "rust_release/builtin_echo": {
+      "median_ms": 15.648,
+      "p95_ms": 18.058,
+      "min_ms": 13.776,
+      "median_cpu_ms": 0.0,
+      "median_peak_working_set_mib": 4.324,
+      "median_peak_commit_mib": 0.656,
+      "median_read_bytes": 1767,
+      "median_write_bytes": 6
+    },
+    "rust_release/native_sort": {
+      "median_ms": 48.594,
+      "p95_ms": 63.379,
+      "min_ms": 45.27,
+      "median_cpu_ms": 31.25,
+      "median_peak_working_set_mib": 4.812,
+      "median_peak_commit_mib": 0.859,
+      "median_read_bytes": 3999463,
+      "median_write_bytes": 0
+    },
+    "rust_release/two_stage_pipeline": {
+      "median_ms": 66.023,
+      "p95_ms": 79.658,
+      "min_ms": 60.428,
+      "median_cpu_ms": 46.875,
+      "median_peak_working_set_mib": 5.164,
+      "median_peak_commit_mib": 1.234,
+      "median_read_bytes": 5448935,
+      "median_write_bytes": 0
+    },
+    "rust_release/command_substitution": {
+      "median_ms": 15.521,
+      "p95_ms": 22.742,
+      "min_ms": 14.506,
+      "median_cpu_ms": 0.0,
+      "median_peak_working_set_mib": 4.328,
+      "median_peak_commit_mib": 0.766,
+      "median_read_bytes": 1773,
+      "median_write_bytes": 12
+    },
+    "rust_release/process_substitution": {
+      "median_ms": 91.487,
+      "p95_ms": 101.799,
+      "min_ms": 86.616,
+      "median_cpu_ms": 46.875,
+      "median_peak_working_set_mib": 5.109,
+      "median_peak_commit_mib": 1.023,
+      "median_read_bytes": 3620081,
+      "median_write_bytes": 10
+    },
+    "rust_release/4MiB_binary_pipeline": {
+      "median_ms": 77.943,
+      "p95_ms": 86.159,
+      "min_ms": 73.022,
+      "median_cpu_ms": 62.5,
+      "median_peak_working_set_mib": 5.098,
+      "median_peak_commit_mib": 1.238,
+      "median_read_bytes": 9967589,
+      "median_write_bytes": 0
+    },
+    "direct_sort": {
+      "median_ms": 33.613,
+      "p95_ms": 41.864,
+      "min_ms": 31.324,
+      "median_cpu_ms": 15.625,
+      "median_peak_working_set_mib": 5.766,
+      "median_peak_commit_mib": 1.961,
+      "median_read_bytes": 0,
+      "median_write_bytes": 0
+    },
+    "python_empty": {
+      "median_ms": 61.599,
+      "p95_ms": 77.466,
+      "min_ms": 57.487,
+      "median_cpu_ms": 46.875,
+      "median_peak_working_set_mib": 11.102,
+      "median_peak_commit_mib": 5.352,
+      "median_read_bytes": 39156,
+      "median_write_bytes": 0
+    },
+    "rust_version": {
+      "median_ms": 14.608,
+      "p95_ms": 17.879,
+      "min_ms": 13.249,
+      "median_cpu_ms": 0.0,
+      "median_peak_working_set_mib": 4.023,
+      "median_peak_commit_mib": 0.598,
+      "median_read_bytes": 0,
+      "median_write_bytes": 56
+    }
+  },
+  "raw": {
+    "python_installed/builtin_echo": [
+      {
+        "wall_ms": 190.5259,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.37890625,
+        "peak_commit_mib": 14.0,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 188.352,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.125,
+        "peak_commit_mib": 13.69140625,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 213.2608,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.16015625,
+        "peak_commit_mib": 13.71484375,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 178.3587,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.390625,
+        "peak_commit_mib": 13.96875,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 179.3871,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.4609375,
+        "peak_commit_mib": 14.08984375,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 190.8637,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.421875,
+        "peak_commit_mib": 14.09765625,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 219.1029,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.31640625,
+        "peak_commit_mib": 13.96875,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 181.4907,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.1171875,
+        "peak_commit_mib": 13.71875,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 179.1949,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 20.40234375,
+        "peak_commit_mib": 14.08203125,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 189.1472,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.16015625,
+        "peak_commit_mib": 13.73046875,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 194.2347,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 20.19921875,
+        "peak_commit_mib": 13.76171875,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 177.4606,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.47265625,
+        "peak_commit_mib": 14.12890625,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 178.0555,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.109375,
+        "peak_commit_mib": 13.66796875,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 172.8678,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.359375,
+        "peak_commit_mib": 14.0703125,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 251.0289,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 20.4140625,
+        "peak_commit_mib": 14.078125,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 175.9323,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 20.39453125,
+        "peak_commit_mib": 14.03515625,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 189.9625,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.109375,
+        "peak_commit_mib": 13.66796875,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 170.9735,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.1015625,
+        "peak_commit_mib": 13.66796875,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 171.8459,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 20.06640625,
+        "peak_commit_mib": 13.671875,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 176.1283,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.11328125,
+        "peak_commit_mib": 13.67578125,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 191.8884,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.13671875,
+        "peak_commit_mib": 13.703125,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 181.5294,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.421875,
+        "peak_commit_mib": 14.00390625,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 188.8124,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.078125,
+        "peak_commit_mib": 13.671875,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 182.2517,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.44921875,
+        "peak_commit_mib": 14.015625,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 194.0537,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.13671875,
+        "peak_commit_mib": 13.703125,
+        "read_bytes": 1870365,
+        "write_bytes": 10
+      }
+    ],
+    "python_installed/native_sort": [
+      {
+        "wall_ms": 230.5463,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.59765625,
+        "peak_commit_mib": 13.984375,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 211.5179,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.6015625,
+        "peak_commit_mib": 13.98046875,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 224.9552,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.640625,
+        "peak_commit_mib": 14.015625,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 219.9884,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.47265625,
+        "peak_commit_mib": 13.8359375,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 246.9377,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 20.7421875,
+        "peak_commit_mib": 14.19140625,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 216.7142,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.40234375,
+        "peak_commit_mib": 13.79296875,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 214.503,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.3984375,
+        "peak_commit_mib": 13.7890625,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 210.1752,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.78515625,
+        "peak_commit_mib": 14.23828125,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 214.0547,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.609375,
+        "peak_commit_mib": 13.98046875,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 209.5101,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.3984375,
+        "peak_commit_mib": 13.79296875,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 223.6173,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.765625,
+        "peak_commit_mib": 14.18359375,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 226.9878,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.79296875,
+        "peak_commit_mib": 14.2421875,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 209.0534,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.48046875,
+        "peak_commit_mib": 13.84375,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 219.1585,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.48046875,
+        "peak_commit_mib": 13.84375,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 379.9127,
+        "cpu_ms": 312.5,
+        "peak_working_set_mib": 20.484375,
+        "peak_commit_mib": 13.84375,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 209.3,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.7421875,
+        "peak_commit_mib": 14.1796875,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 209.8073,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.79296875,
+        "peak_commit_mib": 14.2421875,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 261.4607,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.7421875,
+        "peak_commit_mib": 14.1640625,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 210.262,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.4453125,
+        "peak_commit_mib": 13.80078125,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 245.5079,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.734375,
+        "peak_commit_mib": 14.17578125,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 279.6964,
+        "cpu_ms": 250.0,
+        "peak_working_set_mib": 20.3984375,
+        "peak_commit_mib": 13.78515625,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 207.56,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.6171875,
+        "peak_commit_mib": 14.0,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 242.7031,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.421875,
+        "peak_commit_mib": 13.77734375,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 211.7715,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 20.7421875,
+        "peak_commit_mib": 14.1796875,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 205.8569,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.7265625,
+        "peak_commit_mib": 14.17578125,
+        "read_bytes": 5868061,
+        "write_bytes": 4
+      }
+    ],
+    "python_installed/two_stage_pipeline": [
+      {
+        "wall_ms": 221.1384,
+        "cpu_ms": 250.0,
+        "peak_working_set_mib": 21.1171875,
+        "peak_commit_mib": 14.2890625,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 242.2087,
+        "cpu_ms": 250.0,
+        "peak_working_set_mib": 21.44140625,
+        "peak_commit_mib": 14.68359375,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 229.5274,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 21.40234375,
+        "peak_commit_mib": 14.671875,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 213.5807,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 21.41015625,
+        "peak_commit_mib": 14.62109375,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 216.7205,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 21.3828125,
+        "peak_commit_mib": 14.56640625,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 230.4889,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 21.35546875,
+        "peak_commit_mib": 14.671875,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 230.569,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 21.13671875,
+        "peak_commit_mib": 14.3125,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 211.239,
+        "cpu_ms": 250.0,
+        "peak_working_set_mib": 21.48828125,
+        "peak_commit_mib": 14.80078125,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 256.8789,
+        "cpu_ms": 250.0,
+        "peak_working_set_mib": 21.11328125,
+        "peak_commit_mib": 14.3515625,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 250.1067,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 21.14453125,
+        "peak_commit_mib": 14.36328125,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 227.5893,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 21.37890625,
+        "peak_commit_mib": 14.6015625,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 227.1106,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 21.4140625,
+        "peak_commit_mib": 14.671875,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 217.5846,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 21.203125,
+        "peak_commit_mib": 14.4609375,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 226.7807,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 21.1328125,
+        "peak_commit_mib": 14.3125,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 220.0793,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 21.25390625,
+        "peak_commit_mib": 14.49609375,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 250.9166,
+        "cpu_ms": 250.0,
+        "peak_working_set_mib": 21.421875,
+        "peak_commit_mib": 14.6953125,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 220.1147,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 21.4375,
+        "peak_commit_mib": 14.73046875,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 218.9791,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 21.34375,
+        "peak_commit_mib": 14.640625,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 246.5795,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 21.1484375,
+        "peak_commit_mib": 14.328125,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 264.1133,
+        "cpu_ms": 250.0,
+        "peak_working_set_mib": 21.41015625,
+        "peak_commit_mib": 14.671875,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 217.152,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 21.1015625,
+        "peak_commit_mib": 14.28515625,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 211.0368,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 21.3671875,
+        "peak_commit_mib": 14.65625,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 222.4,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 21.1015625,
+        "peak_commit_mib": 14.2890625,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 218.7515,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 21.41015625,
+        "peak_commit_mib": 14.6796875,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 215.6392,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 21.36328125,
+        "peak_commit_mib": 14.59765625,
+        "read_bytes": 7363227,
+        "write_bytes": 4
+      }
+    ],
+    "python_installed/command_substitution": [
+      {
+        "wall_ms": 183.6239,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.5234375,
+        "peak_commit_mib": 14.16796875,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 176.9189,
+        "cpu_ms": 140.625,
+        "peak_working_set_mib": 20.45703125,
+        "peak_commit_mib": 14.078125,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 198.79,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.46484375,
+        "peak_commit_mib": 14.06640625,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 182.2461,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 20.37890625,
+        "peak_commit_mib": 14.04296875,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 182.5318,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.4140625,
+        "peak_commit_mib": 14.10546875,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 184.7019,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.40234375,
+        "peak_commit_mib": 14.0078125,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 176.0953,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.44921875,
+        "peak_commit_mib": 14.08203125,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 179.2543,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.45703125,
+        "peak_commit_mib": 14.08203125,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 229.5704,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.33203125,
+        "peak_commit_mib": 13.9765625,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 183.8545,
+        "cpu_ms": 140.625,
+        "peak_working_set_mib": 20.359375,
+        "peak_commit_mib": 14.01171875,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 185.9226,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.4296875,
+        "peak_commit_mib": 14.07421875,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 234.1328,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.44140625,
+        "peak_commit_mib": 14.08203125,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 184.0593,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.48046875,
+        "peak_commit_mib": 14.05859375,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 206.5345,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.375,
+        "peak_commit_mib": 14.0546875,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 224.4801,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.19140625,
+        "peak_commit_mib": 13.765625,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 198.9603,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.18359375,
+        "peak_commit_mib": 13.765625,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 197.6139,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.31640625,
+        "peak_commit_mib": 13.9375,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 173.2214,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.421875,
+        "peak_commit_mib": 14.07421875,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 174.2313,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 20.484375,
+        "peak_commit_mib": 14.1015625,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 204.5996,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.43359375,
+        "peak_commit_mib": 14.078125,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 217.3205,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.43359375,
+        "peak_commit_mib": 14.05859375,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 180.4027,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.4140625,
+        "peak_commit_mib": 14.078125,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 201.3628,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.42578125,
+        "peak_commit_mib": 14.01171875,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 185.5417,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 20.43359375,
+        "peak_commit_mib": 14.07421875,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 201.4287,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.4375,
+        "peak_commit_mib": 14.015625,
+        "read_bytes": 1870371,
+        "write_bytes": 16
+      }
+    ],
+    "python_installed/process_substitution": [
+      {
+        "wall_ms": 260.7934,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.64453125,
+        "peak_commit_mib": 13.94921875,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 255.4599,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.48046875,
+        "peak_commit_mib": 13.78125,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 260.4288,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 20.72265625,
+        "peak_commit_mib": 14.13671875,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 264.2617,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.66796875,
+        "peak_commit_mib": 14.0234375,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 249.8231,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.640625,
+        "peak_commit_mib": 13.94921875,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 256.2371,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.69140625,
+        "peak_commit_mib": 14.0078125,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 341.9627,
+        "cpu_ms": 296.875,
+        "peak_working_set_mib": 20.44140625,
+        "peak_commit_mib": 13.796875,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 252.7519,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.51953125,
+        "peak_commit_mib": 13.8203125,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 254.8278,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.73828125,
+        "peak_commit_mib": 14.0546875,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 257.2737,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.6328125,
+        "peak_commit_mib": 14.0,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 286.2444,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 20.7265625,
+        "peak_commit_mib": 14.046875,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 284.2693,
+        "cpu_ms": 250.0,
+        "peak_working_set_mib": 20.60546875,
+        "peak_commit_mib": 13.99609375,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 246.5524,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.6640625,
+        "peak_commit_mib": 13.97265625,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 267.4078,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.6171875,
+        "peak_commit_mib": 13.9765625,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 248.4091,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.75,
+        "peak_commit_mib": 14.05859375,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 251.9559,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.74609375,
+        "peak_commit_mib": 14.1640625,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 262.5153,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.84765625,
+        "peak_commit_mib": 14.2578125,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 323.4365,
+        "cpu_ms": 265.625,
+        "peak_working_set_mib": 20.62109375,
+        "peak_commit_mib": 14.0546875,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 250.406,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 20.83203125,
+        "peak_commit_mib": 14.2109375,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 294.2913,
+        "cpu_ms": 265.625,
+        "peak_working_set_mib": 20.62890625,
+        "peak_commit_mib": 13.98046875,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 275.5815,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 20.7109375,
+        "peak_commit_mib": 14.01171875,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 255.3359,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.70703125,
+        "peak_commit_mib": 14.05078125,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 334.7283,
+        "cpu_ms": 281.25,
+        "peak_working_set_mib": 20.63671875,
+        "peak_commit_mib": 14.0078125,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 254.0897,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.51171875,
+        "peak_commit_mib": 13.8125,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 286.1088,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 20.66015625,
+        "peak_commit_mib": 14.06640625,
+        "read_bytes": 5488669,
+        "write_bytes": 4
+      }
+    ],
+    "python_installed/4MiB_binary_pipeline": [
+      {
+        "wall_ms": 240.0852,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 21.234375,
+        "peak_commit_mib": 14.58984375,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 228.3339,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 21.2265625,
+        "peak_commit_mib": 14.51953125,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 242.4737,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 21.328125,
+        "peak_commit_mib": 14.6953125,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 233.9945,
+        "cpu_ms": 250.0,
+        "peak_working_set_mib": 21.2890625,
+        "peak_commit_mib": 14.63671875,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 233.5401,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 21.28125,
+        "peak_commit_mib": 14.61328125,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 235.6016,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.99609375,
+        "peak_commit_mib": 14.25,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 261.1998,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 20.9453125,
+        "peak_commit_mib": 14.2734375,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 226.5483,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 20.96875,
+        "peak_commit_mib": 14.296875,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 267.9104,
+        "cpu_ms": 250.0,
+        "peak_working_set_mib": 21.1796875,
+        "peak_commit_mib": 14.54296875,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 268.6649,
+        "cpu_ms": 250.0,
+        "peak_working_set_mib": 21.3046875,
+        "peak_commit_mib": 14.62890625,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 237.9506,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 21.34375,
+        "peak_commit_mib": 14.640625,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 252.9026,
+        "cpu_ms": 265.625,
+        "peak_working_set_mib": 21.21484375,
+        "peak_commit_mib": 14.52734375,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 253.8317,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 20.984375,
+        "peak_commit_mib": 14.3046875,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 249.9215,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 21.375,
+        "peak_commit_mib": 14.69921875,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 282.2119,
+        "cpu_ms": 281.25,
+        "peak_working_set_mib": 21.24609375,
+        "peak_commit_mib": 14.515625,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 230.8337,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 21.33203125,
+        "peak_commit_mib": 14.6875,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 230.2868,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 21.359375,
+        "peak_commit_mib": 14.7265625,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 226.1906,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 21.24609375,
+        "peak_commit_mib": 14.64453125,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 233.1454,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 21.28515625,
+        "peak_commit_mib": 14.703125,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 248.7429,
+        "cpu_ms": 296.875,
+        "peak_working_set_mib": 21.36328125,
+        "peak_commit_mib": 14.73046875,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 253.9119,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 20.85546875,
+        "peak_commit_mib": 14.03515625,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 232.1703,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 21.390625,
+        "peak_commit_mib": 14.73828125,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 235.6354,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 21.25390625,
+        "peak_commit_mib": 14.62109375,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 230.7357,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 21.03125,
+        "peak_commit_mib": 14.33984375,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 227.8139,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 21.28125,
+        "peak_commit_mib": 14.60546875,
+        "read_bytes": 11881881,
+        "write_bytes": 4
+      }
+    ],
+    "python_optimized_S/builtin_echo": [
+      {
+        "wall_ms": 108.9934,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 16.76953125,
+        "peak_commit_mib": 11.12890625,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 118.9465,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 16.4765625,
+        "peak_commit_mib": 10.7265625,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 107.3117,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 16.8046875,
+        "peak_commit_mib": 11.1640625,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 122.2965,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 16.828125,
+        "peak_commit_mib": 11.1484375,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 110.105,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 16.79296875,
+        "peak_commit_mib": 11.1171875,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 105.9332,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 16.76953125,
+        "peak_commit_mib": 11.1484375,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 104.8273,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 16.765625,
+        "peak_commit_mib": 11.1328125,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 104.7606,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 16.47265625,
+        "peak_commit_mib": 10.7734375,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 109.0632,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 16.73828125,
+        "peak_commit_mib": 11.0078125,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 115.8062,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 16.77734375,
+        "peak_commit_mib": 11.13671875,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 106.5912,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 16.52734375,
+        "peak_commit_mib": 10.78515625,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 111.3036,
+        "cpu_ms": 78.125,
+        "peak_working_set_mib": 16.7734375,
+        "peak_commit_mib": 11.1328125,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 106.9546,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 16.82421875,
+        "peak_commit_mib": 11.140625,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 105.3365,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 16.796875,
+        "peak_commit_mib": 11.109375,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 105.5051,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 16.4375,
+        "peak_commit_mib": 10.7421875,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 101.1275,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 16.765625,
+        "peak_commit_mib": 11.1328125,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 112.0434,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 16.4296875,
+        "peak_commit_mib": 10.73046875,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 102.4056,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 16.76171875,
+        "peak_commit_mib": 11.13671875,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 106.8173,
+        "cpu_ms": 78.125,
+        "peak_working_set_mib": 16.76953125,
+        "peak_commit_mib": 11.140625,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 117.027,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 16.484375,
+        "peak_commit_mib": 10.7421875,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 118.7292,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 16.78125,
+        "peak_commit_mib": 11.12109375,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 106.0332,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 16.421875,
+        "peak_commit_mib": 10.7421875,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 108.7386,
+        "cpu_ms": 78.125,
+        "peak_working_set_mib": 16.77734375,
+        "peak_commit_mib": 11.12890625,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 107.118,
+        "cpu_ms": 78.125,
+        "peak_working_set_mib": 16.765625,
+        "peak_commit_mib": 11.1328125,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 106.0378,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 16.44921875,
+        "peak_commit_mib": 10.75,
+        "read_bytes": 954746,
+        "write_bytes": 6
+      }
+    ],
+    "python_optimized_S/native_sort": [
+      {
+        "wall_ms": 153.055,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 17.14453125,
+        "peak_commit_mib": 10.8671875,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 145.9093,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.1328125,
+        "peak_commit_mib": 10.90625,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 151.0137,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 17.1875,
+        "peak_commit_mib": 10.95703125,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 148.3694,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.4453125,
+        "peak_commit_mib": 11.28125,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 156.2475,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.42578125,
+        "peak_commit_mib": 11.2421875,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 147.3937,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.140625,
+        "peak_commit_mib": 10.90625,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 148.6162,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 17.546875,
+        "peak_commit_mib": 11.30859375,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 144.1314,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 17.41015625,
+        "peak_commit_mib": 11.1875,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 145.6686,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 17.5234375,
+        "peak_commit_mib": 11.35546875,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 145.7502,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 17.375,
+        "peak_commit_mib": 11.1015625,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 166.4794,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 17.13671875,
+        "peak_commit_mib": 10.8984375,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 142.5,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.44140625,
+        "peak_commit_mib": 11.203125,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 150.0805,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 17.53515625,
+        "peak_commit_mib": 11.3203125,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 160.3554,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 17.4609375,
+        "peak_commit_mib": 11.2890625,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 183.2867,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 17.5,
+        "peak_commit_mib": 11.32421875,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 171.9881,
+        "cpu_ms": 140.625,
+        "peak_working_set_mib": 17.125,
+        "peak_commit_mib": 10.890625,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 145.3145,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.52734375,
+        "peak_commit_mib": 11.3125,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 188.5241,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 17.22265625,
+        "peak_commit_mib": 10.9453125,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 148.5716,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 17.13671875,
+        "peak_commit_mib": 10.90234375,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 207.6377,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 17.40234375,
+        "peak_commit_mib": 11.2109375,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 153.61,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 17.5078125,
+        "peak_commit_mib": 11.33203125,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 158.9031,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 17.43359375,
+        "peak_commit_mib": 11.203125,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 148.6518,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 17.37890625,
+        "peak_commit_mib": 11.1953125,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 153.1447,
+        "cpu_ms": 140.625,
+        "peak_working_set_mib": 17.46875,
+        "peak_commit_mib": 11.30078125,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 152.4962,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 17.375,
+        "peak_commit_mib": 11.18359375,
+        "read_bytes": 5114362,
+        "write_bytes": 0
+      }
+    ],
+    "python_optimized_S/two_stage_pipeline": [
+      {
+        "wall_ms": 209.0369,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.6875,
+        "peak_commit_mib": 12.7265625,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 169.2116,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.640625,
+        "peak_commit_mib": 12.7265625,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 163.3362,
+        "cpu_ms": 140.625,
+        "peak_working_set_mib": 18.35546875,
+        "peak_commit_mib": 12.390625,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 170.7779,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.64453125,
+        "peak_commit_mib": 12.7265625,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 165.7308,
+        "cpu_ms": 140.625,
+        "peak_working_set_mib": 18.41015625,
+        "peak_commit_mib": 12.3984375,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 174.1762,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 18.66796875,
+        "peak_commit_mib": 12.7734375,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 165.6398,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.37890625,
+        "peak_commit_mib": 12.35546875,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 167.4732,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.3359375,
+        "peak_commit_mib": 12.37109375,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 177.8468,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.65234375,
+        "peak_commit_mib": 12.7109375,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 166.2096,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.66015625,
+        "peak_commit_mib": 12.73046875,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 168.2891,
+        "cpu_ms": 140.625,
+        "peak_working_set_mib": 18.40625,
+        "peak_commit_mib": 12.43359375,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 184.9827,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.734375,
+        "peak_commit_mib": 12.765625,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 165.7227,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.671875,
+        "peak_commit_mib": 12.76171875,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 212.1704,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 18.6875,
+        "peak_commit_mib": 12.765625,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 257.0135,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.40625,
+        "peak_commit_mib": 12.390625,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 162.3951,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.6015625,
+        "peak_commit_mib": 12.6875,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 162.6764,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.671875,
+        "peak_commit_mib": 12.7734375,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 171.6075,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.625,
+        "peak_commit_mib": 12.71875,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 183.8953,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.67578125,
+        "peak_commit_mib": 12.71484375,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 215.9298,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 18.6640625,
+        "peak_commit_mib": 12.76953125,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 196.1726,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.65234375,
+        "peak_commit_mib": 12.73046875,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 185.2422,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.62109375,
+        "peak_commit_mib": 12.71875,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 174.8938,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.62109375,
+        "peak_commit_mib": 12.71875,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 169.5952,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.6796875,
+        "peak_commit_mib": 12.74609375,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 171.4548,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.6875,
+        "peak_commit_mib": 12.73828125,
+        "read_bytes": 6883400,
+        "write_bytes": 0
+      }
+    ],
+    "python_optimized_S/command_substitution": [
+      {
+        "wall_ms": 129.458,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.453125,
+        "peak_commit_mib": 10.8125,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 127.4923,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 17.80859375,
+        "peak_commit_mib": 11.203125,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 124.6584,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.546875,
+        "peak_commit_mib": 10.8984375,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 116.6999,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.77734375,
+        "peak_commit_mib": 11.1796875,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 128.9958,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 17.75390625,
+        "peak_commit_mib": 11.1796875,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 115.9656,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.55078125,
+        "peak_commit_mib": 10.9140625,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 138.2294,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 17.64453125,
+        "peak_commit_mib": 11.01953125,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 114.6777,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.796875,
+        "peak_commit_mib": 11.22265625,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 120.7277,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.53125,
+        "peak_commit_mib": 10.8828125,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 122.0647,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.7734375,
+        "peak_commit_mib": 11.18359375,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 121.9488,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.48828125,
+        "peak_commit_mib": 10.80078125,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 129.7108,
+        "cpu_ms": 140.625,
+        "peak_working_set_mib": 17.7890625,
+        "peak_commit_mib": 11.19921875,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 127.4704,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 17.5234375,
+        "peak_commit_mib": 10.828125,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 116.6889,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.5234375,
+        "peak_commit_mib": 10.83203125,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 157.0871,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.83203125,
+        "peak_commit_mib": 11.20703125,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 114.4493,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.48046875,
+        "peak_commit_mib": 10.82421875,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 118.3227,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.82421875,
+        "peak_commit_mib": 11.2265625,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 115.6427,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.83984375,
+        "peak_commit_mib": 11.21484375,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 119.0759,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.47265625,
+        "peak_commit_mib": 10.82421875,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 133.4277,
+        "cpu_ms": 125.0,
+        "peak_working_set_mib": 17.78515625,
+        "peak_commit_mib": 11.19921875,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 136.0965,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.796875,
+        "peak_commit_mib": 11.21484375,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 119.0203,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 17.82421875,
+        "peak_commit_mib": 11.2578125,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 119.6573,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.671875,
+        "peak_commit_mib": 11.00390625,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 129.8062,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.83984375,
+        "peak_commit_mib": 11.2109375,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      },
+      {
+        "wall_ms": 124.0931,
+        "cpu_ms": 109.375,
+        "peak_working_set_mib": 17.79296875,
+        "peak_commit_mib": 11.1953125,
+        "read_bytes": 1090115,
+        "write_bytes": 16
+      }
+    ],
+    "python_optimized_S/process_substitution": [
+      {
+        "wall_ms": 247.8948,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 18.53515625,
+        "peak_commit_mib": 11.3671875,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 205.1509,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.53515625,
+        "peak_commit_mib": 11.3671875,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 194.207,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.5234375,
+        "peak_commit_mib": 11.37109375,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 200.7073,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.45703125,
+        "peak_commit_mib": 11.30859375,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 203.2147,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.4609375,
+        "peak_commit_mib": 11.31640625,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 209.8026,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.515625,
+        "peak_commit_mib": 11.359375,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 213.7538,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.46484375,
+        "peak_commit_mib": 11.3125,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 196.444,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.515625,
+        "peak_commit_mib": 11.390625,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 203.1799,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.20703125,
+        "peak_commit_mib": 11.01953125,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 212.1495,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.484375,
+        "peak_commit_mib": 11.3671875,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 231.9519,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.4609375,
+        "peak_commit_mib": 11.3046875,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 221.5387,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.4296875,
+        "peak_commit_mib": 11.2890625,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 207.3271,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 18.53125,
+        "peak_commit_mib": 11.359375,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 225.3864,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.30078125,
+        "peak_commit_mib": 11.0859375,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 194.7894,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.4609375,
+        "peak_commit_mib": 11.31640625,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 203.1278,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.6484375,
+        "peak_commit_mib": 11.47265625,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 196.1918,
+        "cpu_ms": 140.625,
+        "peak_working_set_mib": 18.5234375,
+        "peak_commit_mib": 11.40234375,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 199.27,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.47265625,
+        "peak_commit_mib": 11.3125,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 197.6916,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.53125,
+        "peak_commit_mib": 11.3671875,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 231.3374,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.5390625,
+        "peak_commit_mib": 11.40625,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 195.3655,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.44140625,
+        "peak_commit_mib": 11.2734375,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 195.5429,
+        "cpu_ms": 140.625,
+        "peak_working_set_mib": 18.51171875,
+        "peak_commit_mib": 11.4140625,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 192.6943,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.453125,
+        "peak_commit_mib": 11.3046875,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 204.242,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.52734375,
+        "peak_commit_mib": 11.359375,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      },
+      {
+        "wall_ms": 195.86,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.578125,
+        "peak_commit_mib": 11.46484375,
+        "read_bytes": 4858265,
+        "write_bytes": 4
+      }
+    ],
+    "python_optimized_S/4MiB_binary_pipeline": [
+      {
+        "wall_ms": 215.5944,
+        "cpu_ms": 250.0,
+        "peak_working_set_mib": 18.59765625,
+        "peak_commit_mib": 12.74609375,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 184.6261,
+        "cpu_ms": 218.75,
+        "peak_working_set_mib": 18.5078125,
+        "peak_commit_mib": 12.6328125,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 181.1842,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.578125,
+        "peak_commit_mib": 12.74609375,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 181.0898,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.49609375,
+        "peak_commit_mib": 12.67578125,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 206.2188,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.55859375,
+        "peak_commit_mib": 12.75,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 184.3596,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.62109375,
+        "peak_commit_mib": 12.75390625,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 186.8149,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.59765625,
+        "peak_commit_mib": 12.76171875,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 179.5249,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.51171875,
+        "peak_commit_mib": 12.69140625,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 226.0437,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 18.578125,
+        "peak_commit_mib": 12.77734375,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 177.7153,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.5234375,
+        "peak_commit_mib": 12.72265625,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 190.8823,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.5234375,
+        "peak_commit_mib": 12.71484375,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 180.1254,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.5625,
+        "peak_commit_mib": 12.7421875,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 174.767,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.65234375,
+        "peak_commit_mib": 12.7890625,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 218.2977,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.61328125,
+        "peak_commit_mib": 12.7734375,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 174.2169,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.5546875,
+        "peak_commit_mib": 12.7421875,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 183.4528,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.55078125,
+        "peak_commit_mib": 12.76171875,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 179.6889,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.23828125,
+        "peak_commit_mib": 12.36328125,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 182.6481,
+        "cpu_ms": 187.5,
+        "peak_working_set_mib": 18.6171875,
+        "peak_commit_mib": 12.7578125,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 185.8167,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.5625,
+        "peak_commit_mib": 12.6953125,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 215.1485,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 18.56640625,
+        "peak_commit_mib": 12.73828125,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 231.248,
+        "cpu_ms": 234.375,
+        "peak_working_set_mib": 18.609375,
+        "peak_commit_mib": 12.7421875,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 179.2219,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.34375,
+        "peak_commit_mib": 12.4375,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 181.0397,
+        "cpu_ms": 171.875,
+        "peak_working_set_mib": 18.60546875,
+        "peak_commit_mib": 12.7421875,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 178.2598,
+        "cpu_ms": 156.25,
+        "peak_working_set_mib": 18.59765625,
+        "peak_commit_mib": 12.7265625,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 214.7627,
+        "cpu_ms": 203.125,
+        "peak_working_set_mib": 18.56640625,
+        "peak_commit_mib": 12.703125,
+        "read_bytes": 11402054,
+        "write_bytes": 0
+      }
+    ],
+    "rust_release/builtin_echo": [
+      {
+        "wall_ms": 15.5849,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.65625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 14.7648,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.65625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 16.5971,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.65625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 17.6781,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.3203125,
+        "peak_commit_mib": 0.65234375,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 14.696,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.66015625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 15.6477,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.65234375,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 17.6585,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.66015625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 15.2189,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.65625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 15.8628,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.65234375,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 14.4438,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.66015625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 14.0811,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.66015625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 18.0358,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.66015625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 15.4561,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.65625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 15.1026,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.66015625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 16.2055,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.66015625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 15.3381,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.66015625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 14.8284,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.65625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 16.2279,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.66015625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 13.8118,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.3203125,
+        "peak_commit_mib": 0.6484375,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 19.4767,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.6484375,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 18.0577,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.65234375,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 17.2368,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.3203125,
+        "peak_commit_mib": 0.65234375,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 17.0518,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.65625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 17.2508,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.65625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      },
+      {
+        "wall_ms": 13.7758,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.65625,
+        "read_bytes": 1767,
+        "write_bytes": 6
+      }
+    ],
+    "rust_release/native_sort": [
+      {
+        "wall_ms": 47.2384,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.859375,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 47.5618,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.85546875,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 52.5858,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.859375,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 47.6602,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.86328125,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 46.8304,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.80859375,
+        "peak_commit_mib": 0.85546875,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 48.1167,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.859375,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 47.702,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.85546875,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 48.3872,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.86328125,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 48.8925,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.80859375,
+        "peak_commit_mib": 0.8515625,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 54.4845,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.86328125,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 47.8517,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.81640625,
+        "peak_commit_mib": 0.86328125,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 53.7298,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.85546875,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 51.8528,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.81640625,
+        "peak_commit_mib": 0.8671875,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 54.0947,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.859375,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 75.7699,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 4.80859375,
+        "peak_commit_mib": 0.85546875,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 53.3822,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.86328125,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 48.5941,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.80859375,
+        "peak_commit_mib": 0.8515625,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 45.5592,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.81640625,
+        "peak_commit_mib": 0.86328125,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 46.605,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.85546875,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 63.3794,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.859375,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 59.8789,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.86328125,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 50.6592,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 4.81640625,
+        "peak_commit_mib": 0.86328125,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 51.6744,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.86328125,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 47.3663,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 4.8125,
+        "peak_commit_mib": 0.8515625,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 45.2702,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.80859375,
+        "peak_commit_mib": 0.85546875,
+        "read_bytes": 3999463,
+        "write_bytes": 0
+      }
+    ],
+    "rust_release/two_stage_pipeline": [
+      {
+        "wall_ms": 66.2582,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.12890625,
+        "peak_commit_mib": 1.20703125,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 67.397,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 5.26171875,
+        "peak_commit_mib": 1.33203125,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 72.5712,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.1640625,
+        "peak_commit_mib": 1.234375,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 61.468,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.23828125,
+        "peak_commit_mib": 1.3203125,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 71.8418,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.203125,
+        "peak_commit_mib": 1.26953125,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 63.607,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.15234375,
+        "peak_commit_mib": 1.234375,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 62.2293,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.15234375,
+        "peak_commit_mib": 1.234375,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 61.9211,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.20703125,
+        "peak_commit_mib": 1.2421875,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 63.0575,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.12109375,
+        "peak_commit_mib": 1.23046875,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 69.2373,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.13671875,
+        "peak_commit_mib": 1.234375,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 76.1985,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.21484375,
+        "peak_commit_mib": 1.28125,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 75.9028,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 5.19140625,
+        "peak_commit_mib": 1.31640625,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 63.9936,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.1640625,
+        "peak_commit_mib": 1.23828125,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 61.4118,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 5.15234375,
+        "peak_commit_mib": 1.23046875,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 79.6583,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.171875,
+        "peak_commit_mib": 1.23828125,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 68.0184,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 5.15625,
+        "peak_commit_mib": 1.19921875,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 60.4279,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 5.19140625,
+        "peak_commit_mib": 1.265625,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 60.5532,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.19140625,
+        "peak_commit_mib": 1.2265625,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 62.2969,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.1640625,
+        "peak_commit_mib": 1.2734375,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 66.6395,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.15234375,
+        "peak_commit_mib": 1.2265625,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 61.3862,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.22265625,
+        "peak_commit_mib": 1.26953125,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 64.6482,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.1640625,
+        "peak_commit_mib": 1.23046875,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 82.574,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.109375,
+        "peak_commit_mib": 1.19140625,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 66.023,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.13671875,
+        "peak_commit_mib": 1.2109375,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 69.4502,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 5.10546875,
+        "peak_commit_mib": 1.265625,
+        "read_bytes": 5448935,
+        "write_bytes": 0
+      }
+    ],
+    "rust_release/command_substitution": [
+      {
+        "wall_ms": 16.3522,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.76171875,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 18.3771,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.76953125,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 20.7525,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.765625,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 15.1161,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.765625,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 14.5056,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.765625,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 15.1399,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.33203125,
+        "peak_commit_mib": 0.765625,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 14.6668,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.76953125,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 15.7563,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.7578125,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 15.1079,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.765625,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 17.1764,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.33203125,
+        "peak_commit_mib": 0.7734375,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 14.9894,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.76171875,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 15.3169,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.765625,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 15.3622,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.76171875,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 17.7486,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.765625,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 19.6608,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.76953125,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 15.5205,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.33203125,
+        "peak_commit_mib": 0.765625,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 15.1922,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.765625,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 22.7416,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.33203125,
+        "peak_commit_mib": 0.76171875,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 16.6236,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.33203125,
+        "peak_commit_mib": 0.76171875,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 22.913,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.33203125,
+        "peak_commit_mib": 0.76953125,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 19.8847,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.33203125,
+        "peak_commit_mib": 0.76171875,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 14.8222,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.3359375,
+        "peak_commit_mib": 0.7734375,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 15.3817,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.328125,
+        "peak_commit_mib": 0.765625,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 15.0594,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.32421875,
+        "peak_commit_mib": 0.76171875,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      },
+      {
+        "wall_ms": 16.1262,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.3359375,
+        "peak_commit_mib": 0.7734375,
+        "read_bytes": 1773,
+        "write_bytes": 12
+      }
+    ],
+    "rust_release/process_substitution": [
+      {
+        "wall_ms": 94.4134,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.1171875,
+        "peak_commit_mib": 1.03515625,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 89.1745,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.1015625,
+        "peak_commit_mib": 1.01171875,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 89.0982,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.109375,
+        "peak_commit_mib": 1.01171875,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 88.9999,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.11328125,
+        "peak_commit_mib": 1.03125,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 91.6435,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.09375,
+        "peak_commit_mib": 1.0078125,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 91.1159,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.09375,
+        "peak_commit_mib": 1.0,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 90.4847,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.11328125,
+        "peak_commit_mib": 1.03125,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 96.653,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.11328125,
+        "peak_commit_mib": 1.03125,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 97.0513,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.109375,
+        "peak_commit_mib": 1.02734375,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 99.5618,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.109375,
+        "peak_commit_mib": 1.02734375,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 93.1342,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.09375,
+        "peak_commit_mib": 1.0078125,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 91.4874,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.11328125,
+        "peak_commit_mib": 1.02734375,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 96.2199,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.1171875,
+        "peak_commit_mib": 1.03515625,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 95.2754,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.11328125,
+        "peak_commit_mib": 1.0390625,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 88.6886,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.109375,
+        "peak_commit_mib": 1.015625,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 86.9452,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.09375,
+        "peak_commit_mib": 1.0078125,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 88.9785,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.10546875,
+        "peak_commit_mib": 1.01953125,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 86.6164,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.09765625,
+        "peak_commit_mib": 1.01171875,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 90.4038,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.09375,
+        "peak_commit_mib": 0.9921875,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 106.5288,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 5.109375,
+        "peak_commit_mib": 1.0234375,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 101.7993,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.109375,
+        "peak_commit_mib": 1.03125,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 88.0995,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.1171875,
+        "peak_commit_mib": 1.03515625,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 100.1286,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.11328125,
+        "peak_commit_mib": 1.02734375,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 87.1717,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.1171875,
+        "peak_commit_mib": 1.0078125,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      },
+      {
+        "wall_ms": 93.5257,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.08984375,
+        "peak_commit_mib": 1.0,
+        "read_bytes": 3620081,
+        "write_bytes": 10
+      }
+    ],
+    "rust_release/4MiB_binary_pipeline": [
+      {
+        "wall_ms": 80.4156,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.0859375,
+        "peak_commit_mib": 1.234375,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 73.0218,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.1015625,
+        "peak_commit_mib": 1.265625,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 74.1604,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.078125,
+        "peak_commit_mib": 1.234375,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 74.9389,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.06640625,
+        "peak_commit_mib": 1.21484375,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 81.0028,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.1171875,
+        "peak_commit_mib": 1.30078125,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 77.3884,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.16015625,
+        "peak_commit_mib": 1.33203125,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 80.6782,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.08984375,
+        "peak_commit_mib": 1.23828125,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 75.9063,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.06640625,
+        "peak_commit_mib": 1.2109375,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 77.8174,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.14453125,
+        "peak_commit_mib": 1.328125,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 97.2489,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.04296875,
+        "peak_commit_mib": 1.1875,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 75.6214,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.10546875,
+        "peak_commit_mib": 1.2890625,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 86.1586,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.09765625,
+        "peak_commit_mib": 1.26171875,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 78.745,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.08203125,
+        "peak_commit_mib": 1.30078125,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 81.7108,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.1015625,
+        "peak_commit_mib": 1.21484375,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 74.6589,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.0625,
+        "peak_commit_mib": 1.2109375,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 84.9342,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.11328125,
+        "peak_commit_mib": 1.27734375,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 74.5317,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.140625,
+        "peak_commit_mib": 1.29296875,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 77.9432,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.04296875,
+        "peak_commit_mib": 1.1875,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 73.7316,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.0859375,
+        "peak_commit_mib": 1.23046875,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 82.1694,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.109375,
+        "peak_commit_mib": 1.2734375,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 80.5665,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.1015625,
+        "peak_commit_mib": 1.234375,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 76.4681,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.1171875,
+        "peak_commit_mib": 1.2890625,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 76.0388,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.10546875,
+        "peak_commit_mib": 1.22265625,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 79.194,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 5.0703125,
+        "peak_commit_mib": 1.26171875,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 79.9625,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 5.09375,
+        "peak_commit_mib": 1.2109375,
+        "read_bytes": 9967589,
+        "write_bytes": 0
+      }
+    ],
+    "direct_sort": [
+      {
+        "wall_ms": 33.0657,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.74609375,
+        "peak_commit_mib": 1.9375,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 32.0712,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 5.78515625,
+        "peak_commit_mib": 1.97265625,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 38.9076,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.80078125,
+        "peak_commit_mib": 2.0625,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 32.4833,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 5.796875,
+        "peak_commit_mib": 1.97265625,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 32.2725,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 5.74609375,
+        "peak_commit_mib": 1.953125,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 33.0033,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.7421875,
+        "peak_commit_mib": 1.94921875,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 31.8497,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.9296875,
+        "peak_commit_mib": 2.203125,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 33.0554,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.7734375,
+        "peak_commit_mib": 1.95703125,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 42.1892,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 5.7578125,
+        "peak_commit_mib": 1.94921875,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 31.3243,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 5.7265625,
+        "peak_commit_mib": 1.93359375,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 36.0572,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 5.734375,
+        "peak_commit_mib": 1.9375,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 37.6867,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 5.7890625,
+        "peak_commit_mib": 1.98046875,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 32.4689,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.875,
+        "peak_commit_mib": 2.078125,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 33.8864,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.796875,
+        "peak_commit_mib": 1.984375,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 41.8638,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.73046875,
+        "peak_commit_mib": 1.9375,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 33.8772,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.75390625,
+        "peak_commit_mib": 1.94140625,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 37.0368,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.7890625,
+        "peak_commit_mib": 1.9765625,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 32.1793,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.796875,
+        "peak_commit_mib": 2.05859375,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 36.2579,
+        "cpu_ms": 31.25,
+        "peak_working_set_mib": 5.7578125,
+        "peak_commit_mib": 1.94140625,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 38.0951,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.7890625,
+        "peak_commit_mib": 1.98046875,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 33.6134,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 5.765625,
+        "peak_commit_mib": 1.9609375,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 33.8273,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.77734375,
+        "peak_commit_mib": 1.98828125,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 32.8507,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.74609375,
+        "peak_commit_mib": 1.94140625,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 33.6393,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.76171875,
+        "peak_commit_mib": 1.97265625,
+        "read_bytes": 0,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 32.4364,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 5.73046875,
+        "peak_commit_mib": 1.93359375,
+        "read_bytes": 0,
+        "write_bytes": 0
+      }
+    ],
+    "python_empty": [
+      {
+        "wall_ms": 63.7011,
+        "cpu_ms": 78.125,
+        "peak_working_set_mib": 11.09765625,
+        "peak_commit_mib": 5.34375,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 61.5986,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.1015625,
+        "peak_commit_mib": 5.34375,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 78.0713,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 11.10546875,
+        "peak_commit_mib": 5.36328125,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 60.1274,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.109375,
+        "peak_commit_mib": 5.35546875,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 64.7179,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.10546875,
+        "peak_commit_mib": 5.34375,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 60.4441,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.1015625,
+        "peak_commit_mib": 5.3515625,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 61.2747,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.1015625,
+        "peak_commit_mib": 5.34375,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 60.4209,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 11.1015625,
+        "peak_commit_mib": 5.3515625,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 72.3309,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 11.10546875,
+        "peak_commit_mib": 5.3515625,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 59.2695,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.1171875,
+        "peak_commit_mib": 5.359375,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 75.5374,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 11.0859375,
+        "peak_commit_mib": 5.33203125,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 68.0695,
+        "cpu_ms": 93.75,
+        "peak_working_set_mib": 11.09375,
+        "peak_commit_mib": 5.33203125,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 60.8023,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.11328125,
+        "peak_commit_mib": 5.35546875,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 77.3743,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 11.12109375,
+        "peak_commit_mib": 5.35546875,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 77.4663,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 11.1015625,
+        "peak_commit_mib": 5.3515625,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 68.6712,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.09375,
+        "peak_commit_mib": 5.33984375,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 58.4431,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.11328125,
+        "peak_commit_mib": 5.35546875,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 58.0381,
+        "cpu_ms": 62.5,
+        "peak_working_set_mib": 11.09765625,
+        "peak_commit_mib": 5.34765625,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 57.487,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.109375,
+        "peak_commit_mib": 5.3515625,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 73.775,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.1015625,
+        "peak_commit_mib": 5.33984375,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 58.9902,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.1015625,
+        "peak_commit_mib": 5.3515625,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 61.3196,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.125,
+        "peak_commit_mib": 5.375,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 62.6531,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.109375,
+        "peak_commit_mib": 5.3515625,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 62.3372,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.09375,
+        "peak_commit_mib": 5.3359375,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      },
+      {
+        "wall_ms": 57.8036,
+        "cpu_ms": 46.875,
+        "peak_working_set_mib": 11.12109375,
+        "peak_commit_mib": 5.36328125,
+        "read_bytes": 39156,
+        "write_bytes": 0
+      }
+    ],
+    "rust_version": [
+      {
+        "wall_ms": 16.7953,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.0234375,
+        "peak_commit_mib": 0.59765625,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 15.6068,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.0234375,
+        "peak_commit_mib": 0.59765625,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 13.8739,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.0234375,
+        "peak_commit_mib": 0.59765625,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 13.7544,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.02734375,
+        "peak_commit_mib": 0.59765625,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 14.1434,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.02734375,
+        "peak_commit_mib": 0.6015625,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 14.4035,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.0234375,
+        "peak_commit_mib": 0.59765625,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 14.5714,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.02734375,
+        "peak_commit_mib": 0.60546875,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 16.3735,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.0234375,
+        "peak_commit_mib": 0.59765625,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 14.8096,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.0234375,
+        "peak_commit_mib": 0.59375,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 16.5583,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.0234375,
+        "peak_commit_mib": 0.59375,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 15.3676,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.02734375,
+        "peak_commit_mib": 0.59765625,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 15.3985,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.01953125,
+        "peak_commit_mib": 0.59375,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 17.8788,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.01953125,
+        "peak_commit_mib": 0.59375,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 13.2494,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.02734375,
+        "peak_commit_mib": 0.60546875,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 20.6852,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.02734375,
+        "peak_commit_mib": 0.6015625,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 14.6081,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.01953125,
+        "peak_commit_mib": 0.58984375,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 13.4823,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.01953125,
+        "peak_commit_mib": 0.59765625,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 13.7376,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.01953125,
+        "peak_commit_mib": 0.5859375,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 16.9751,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.0234375,
+        "peak_commit_mib": 0.59765625,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 15.6944,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.0234375,
+        "peak_commit_mib": 0.59375,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 16.2583,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.0234375,
+        "peak_commit_mib": 0.6015625,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 13.6603,
+        "cpu_ms": 0.0,
+        "peak_working_set_mib": 4.02734375,
+        "peak_commit_mib": 0.6015625,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 13.8857,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.02734375,
+        "peak_commit_mib": 0.60546875,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 13.5205,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.02734375,
+        "peak_commit_mib": 0.60546875,
+        "read_bytes": 0,
+        "write_bytes": 56
+      },
+      {
+        "wall_ms": 14.4406,
+        "cpu_ms": 15.625,
+        "peak_working_set_mib": 4.0234375,
+        "peak_commit_mib": 0.6015625,
+        "read_bytes": 0,
+        "write_bytes": 56
+      }
+    ]
+  },
+  "provenance": "Historical prototype measurement with uutils-coreutils and BusyBox; local paths replaced by role labels. Not a benchmark of subsequent repository packaging changes."
+}

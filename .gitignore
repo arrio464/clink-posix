@@ -1,0 +1,16 @@
+/target/
+/work/
+/dist/
+/tools.tsv
+/tools.*.local.tsv
+/benchmark.json
+/verification.txt
+/clink-verification.txt
+*.exe
+*.pdb
+*.dll
+__pycache__/
+*.py[cod]
+.DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,33 @@
+name: Windows checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Toolchain and formatting
+        shell: pwsh
+        run: |
+          rustc --version
+          cargo --version
+          cargo fmt --all -- --check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo clippy --locked --offline -- -D warnings
+          exit $LASTEXITCODE
+      - name: Build
+        shell: pwsh
+        run: ./build.ps1
+      - name: Self-contained black-box tests
+        shell: pwsh
+        run: python tests/check.py
