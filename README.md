@@ -1,5 +1,8 @@
 # Clink POSIX Native
 
+> 除这句话外，本项目所有内容均为向 LLM 许愿得到。因此它大概率无法在您的机器上运行。
+> ~~如果你还是想试试，可以让你的 agent 试着修一修，说不定就能跑起来了（（~~
+
 A bounded POSIX-style interactive command executor for native Windows programs.
 
 Windows x64 / Rust 0.2。已补齐旧 Python px 的常用交互功能，直接提供 `px`、auto/on/off 和跨行目录/环境状态。Lua 只负责 Clink 接入；无需 Python 运行时、Cargo 第三方依赖或常驻服务。
