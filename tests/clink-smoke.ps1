@@ -10,13 +10,13 @@ $scripts = Join-Path $work 'clink-scripts'
 New-Item -ItemType Directory -Force -Path $profile, $scripts | Out-Null
 $utf8 = [Text.UTF8Encoding]::new($false)
 [IO.File]::WriteAllText((Join-Path $profile 'clink_settings'), "clink.autostart = nul`nclink.logo = none`nclink.autoupdate = off`ncmd.get_errorlevel = True`n", $utf8)
-$luaPath = (Join-Path $PSScriptRoot 'clink_smoke.lua').Replace('\', '/')
+$luaPath = (Join-Path $PSScriptRoot 'clink_parity.lua').Replace('\', '/')
 if ($luaPath.Contains("'")) { throw 'Smoke-test path may not contain a single quote.' }
 [IO.File]::WriteAllText((Join-Path $scripts 'probe.lua'), "dofile('$luaPath')", $utf8)
 & $env:COMSPEC /d /k "`"$ClinkExe`" inject --quiet --profile `"$profile`" --scripts `"$scripts`""
 if ($LASTEXITCODE -ne 0) { throw 'Clink smoke session failed.' }
 $report = Get-Content -LiteralPath (Join-Path $root 'clink-verification.txt')
-if (($report | Where-Object { $_ -like 'PASS *' }).Count -ne 7 -or ($report | Where-Object { $_ -like 'FAIL *' })) {
+if (($report | Where-Object { $_ -like 'PASS *' }).Count -ne 20 -or ($report | Where-Object { $_ -like 'FAIL *' })) {
     throw 'Clink smoke checks did not all pass.'
 }
 $report

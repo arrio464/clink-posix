@@ -1,12 +1,13 @@
+mod aliases;
+mod arithmetic;
 mod execute;
+mod expansion;
 mod platform;
+mod session;
 mod syntax;
 use execute::{Context, Engine};
 use std::{fs, io::Read, path::PathBuf};
 
-fn hex(s: &str) -> String {
-    s.as_bytes().iter().map(|b| format!("{b:02x}")).collect()
-}
 fn main() {
     match entry() {
         Ok(code) => std::process::exit(code),
@@ -21,13 +22,15 @@ fn entry() -> Result<i32, String> {
     let mut command = None;
     let mut request = None;
     let mut state = None;
+    let mut sync = None;
+    let mut alias_path = None;
     let mut status = 0;
     let mut tools = std::env::current_exe()
         .map_err(|e| e.to_string())?
         .with_file_name("tools.tsv");
     while let Some(option) = args.next() {
         if option == "--version" {
-            println!("clink-posix-native 0.1.0; dialect 0.1; state protocol 1");
+            println!("clink-posix-native 0.2.0; dialect 0.2; state protocol 1");
             return Ok(0);
         }
         let value = args
@@ -38,6 +41,8 @@ fn entry() -> Result<i32, String> {
             "--request" => request = Some(value),
             "--tools" => tools = PathBuf::from(value),
             "--state" => state = Some(PathBuf::from(value)),
+            "--sync" => sync = Some(PathBuf::from(value)),
+            "--aliases" => alias_path = Some(PathBuf::from(value)),
             "--status" => status = value.parse().map_err(|_| "Invalid status")?,
             _ => return Err(format!("Unknown option {option}")),
         }
@@ -57,38 +62,25 @@ fn entry() -> Result<i32, String> {
             String::from_utf8(bytes).map_err(|_| "Request must be UTF-8")?
         }
     };
-    let node = syntax::parse(&text)?;
-    let engine = Engine::new(&tools)?;
     let mut ctx = Context::initial(status)?;
     let before = ctx.clone();
-    let streams = platform::Streams::standard().map_err(|e| e.to_string())?;
-    ctx.status = engine.run(&node, &mut ctx, &streams)?;
-    // State is declarative data, never a generated CMD script. Publishing this
-    // snapshot does not modify the parent process; an adapter must validate it.
-    if let Some(path) = state {
-        let mut data = format!(
-            "V\t1\nR\t{}\nC\t{}\n",
-            ctx.status,
-            hex(&ctx.cwd.to_string_lossy())
-        );
-        for (key, value) in &ctx.env {
-            if !key.starts_with('=') && before.env.get(key) != Some(value) {
-                data += &format!("S\t{}\t{}\n", hex(key), hex(value));
-            }
+    let result = (|| {
+        let mut node = syntax::parse(&text)?;
+        if let Some(path) = alias_path {
+            aliases::expand(&mut node, &aliases::read(&path)?)?;
         }
-        for key in before.env.keys() {
-            if !key.starts_with('=') && !ctx.env.contains_key(key) {
-                data += &format!("U\t{}\n", hex(key));
-            }
-        }
-        // The caller supplies a unique, previously nonexistent output path.
-        use std::io::Write;
-        let mut file = fs::OpenOptions::new()
-            .write(true)
-            .create_new(true)
-            .open(path)
-            .map_err(|e| e.to_string())?;
-        file.write_all(data.as_bytes()).map_err(|e| e.to_string())?;
+        let engine = Engine::new(&tools)?;
+        let streams = platform::Streams::standard().map_err(|e| e.to_string())?;
+        engine.run(&node, &mut ctx, &streams)
+    })();
+    ctx.status = result.as_ref().copied().unwrap_or(2);
+    if result.is_ok()
+        && let Some(path) = state
+    {
+        session::state(&path, &before, &ctx)?;
     }
-    Ok(ctx.status)
+    if let Some(path) = sync {
+        session::sync(&path, &before, &ctx)?;
+    }
+    result
 }

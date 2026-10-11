@@ -1,29 +1,27 @@
-# Local validation record
+# 0.2 本地验证
 
-Date: 2026-10-11, Windows 11 x64, Rust 1.98.1 (GNU target), Python 3.x, Clink 1.9.34.
+2026-10-11，Windows x64，Rust 1.98.1，Clink 1.9.34。远程 CI 未运行。
 
-This record describes this local checkout. It is not a claim that GitHub Actions has run; the
-remote repository has not been created or pushed by the preparing agent.
+- cargo fmt / clippy（警告当错误）通过，离线 release 构建成功。
+- 89 项黑盒检查通过；共同语法与已安装 Python px 对照。
+- 20 项隔离 Clink 检查通过，并在升级后真实用户配置下再次通过：跨行 cwd/env/status、元字符路径、DOSKEY、自动/显式路由、管道与有限进程替换。
+- 已安装本机原生 px；旧 Python px 文件保留，升级有完整文件备份。
 
-| Check | Result | Scope |
-|---|---|---|
-| `cargo fmt --all -- --check` | Pass | Source formatting |
-| `cargo clippy --locked --offline -- -D warnings` | Pass | Static lint, Windows GNU |
-| `./build.ps1` | Pass | Offline release build, no Cargo dependencies |
-| `python tests/check.py` | 47 pass | Self-contained native fixture; no Scoop, BusyBox or old Python helper |
-| `python tests/check.py --python-reference PATH` | 47 pass | Optional common-subset differential with installed legacy helper on this machine |
-| `./tests/clink-smoke.ps1 -ClinkExe PATH` | 7 pass | Isolated real Clink/CMD session, no global installation |
-| `python tests/benchmark.py --samples 3 --warmups 1` | Pass | Portable benchmark smoke run with fixture tools; output ignored by Git |
+测试不证明完整 POSIX 兼容，也不覆盖 Ctrl+C 后代进程回收、所有控制台编码、UNC 父目录或启用延迟展开后的 ! 路径。
 
-The historical 25-sample measurements in [PERFORMANCE.md](../PERFORMANCE.md) predate the
-repository portability edits. They use a different external-tool workload. This record does
-not relabel those numbers as a new measurement.
+## 同批性能测量
 
-The current installed Clink loader and Python helper were not replaced or modified. The
-repository's binary, machine-local tool manifest, benchmark raw output, smoke logs and build
-artifacts are ignored; `git ls-files` is the authoritative list of intended publication content.
+25 个样本/场景，3 次预热，随机顺序；自带原生夹具；stdin/stdout 使用 NUL。两种后端运行相同负载。时间包含工具执行，不包含 Clink 提示符和父状态同步。
 
-Outstanding production gates: persistent CMD parent-state synchronization, Ctrl+C and descendant
-process cleanup, total resource budgets, terminal code-page behavior, and comprehensive
-external-program argv compatibility. Virtual devices beyond redirection `/dev/null` remain a
-proposal, not implementation.
+| 场景 | Rust 中位数 ms | 已安装 Python 中位数 ms |
+|---|---:|---:|
+| 内建 echo | 17.030 | 201.139 |
+| 原生排序夹具 | 51.423 | 234.460 |
+| 两段管道 | 78.275 | 251.602 |
+| 命令替换 | 17.419 | 200.436 |
+| 进程替换 | 124.294 | 307.526 |
+| 4 MiB 管道 | 80.740 | 261.279 |
+
+exe 576512 字节（563.0 KiB）。原生执行器峰值工作集中位数约 4.4–5.2 MiB，Python 约 20.4–21.3 MiB；计数仅覆盖执行器，不是整个进程树。CPU 时间有系统计时粒度限制。
+
+完整样本、环境、哈希与 P95 在 [原始记录](benchmarks/2026-10-11-parity.json)。与 PERFORMANCE.md 中旧 uutils/BusyBox 测量的工具负载不同，不能据此比较原型和 0.2 的外部命令绝对耗时。

@@ -193,7 +193,7 @@ impl Engine {
             Node::Pipeline(nodes, _) => {
                 ctx.status = self.run(&nodes[0], ctx, streams)?;
             }
-            Node::Command(_, _) => {
+            Node::Command(_, _) | Node::Group(_, _) => {
                 ctx.status = self.command(node, ctx, streams.duplicate().map_err(err)?, false);
             }
         }
@@ -225,6 +225,52 @@ impl Engine {
         }
         Ok(bytes)
     }
+
+    fn value(&self, part: &Part, ctx: &Context, streams: &Streams) -> Result<(String, bool, bool)> {
+        Ok(match part {
+            Part::Lit(s, q) => (s.clone(), *q, false),
+            Part::Var(s, q) => (ctx.get(s), *q, true),
+            Part::Length(s, q) => (ctx.get(s).chars().count().to_string(), *q, true),
+            Part::Arithmetic(expr, q) => {
+                (expr.evaluate(&|name| ctx.get(name))?.to_string(), *q, false)
+            }
+            Part::Parameter(name, op, fallback, q) => {
+                let value = ctx.get(name);
+                let exists = ctx.env.contains_key(&name.to_uppercase())
+                    || name.eq_ignore_ascii_case("PWD")
+                    || (name.eq_ignore_ascii_case("HOME") && ctx.env.contains_key("USERPROFILE"));
+                let present = exists && (!op.starts_with(':') || !value.is_empty());
+                let use_fallback = if op.ends_with('+') { present } else { !present };
+                let value = if use_fallback {
+                    let mut values = Vec::new();
+                    for w in fallback {
+                        let mut value = String::new();
+                        for p in &w.0 {
+                            value += &self.value(p, ctx, streams)?.0;
+                        }
+                        values.push(value);
+                    }
+                    values.join(" ")
+                } else if op.ends_with('+') {
+                    String::new()
+                } else {
+                    value
+                };
+                (value, *q, true)
+            }
+            Part::Capture(node, q) => {
+                let bytes = self.capture(node, ctx, streams)?;
+                let value =
+                    String::from_utf8(bytes).map_err(|_| "Command substitution requires UTF-8")?;
+                (value.trim_end_matches(['\r', '\n']).to_owned(), *q, true)
+            }
+            Part::Process(node) => {
+                let bytes = self.capture(node, ctx, streams)?;
+                let path = self.temp.lock().map_err(err)?.file(&bytes)?;
+                (path.to_string_lossy().into(), true, false)
+            }
+        })
+    }
     fn expand(
         &self,
         word: &Word,
@@ -232,54 +278,57 @@ impl Engine {
         streams: &Streams,
         split: bool,
     ) -> Result<Vec<String>> {
-        // Field splitting applies only to unquoted variable/capture values, not
-        // literal text. Prefix/suffix concatenate with the first/last field.
-        let mut fields: Vec<String> = Vec::new();
-        let mut current = String::new();
-        let mut present = false;
-        for part in &word.0 {
-            let (value, quoted, dynamic) = match part {
-                Part::Lit(s, q) => (s.clone(), *q, false),
-                Part::Var(s, q) => (ctx.get(s), *q, true),
-                Part::Capture(node, q) => {
-                    let bytes = self.capture(node, ctx, streams)?;
-                    let value = String::from_utf8(bytes)
-                        .map_err(|_| "Command substitution requires UTF-8")?;
-                    (value.trim_end_matches(['\r', '\n']).to_owned(), *q, true)
+        use crate::expansion;
+        let mut result = Vec::new();
+        for parts in expansion::variants(word, split)? {
+            let mut fields = Vec::new();
+            let mut pattern = Vec::new();
+            let mut present = false;
+            for (i, part) in parts.iter().enumerate() {
+                let (mut value, quoted, dynamic) = self.value(part, ctx, streams)?;
+                if value.contains('\0') {
+                    return Err("NUL cannot be passed in an argument".into());
                 }
-                Part::Process(node) => {
-                    let bytes = self.capture(node, ctx, streams)?;
-                    let path = self.temp.lock().map_err(err)?.file(&bytes)?;
-                    (path.to_string_lossy().into(), true, false)
+                if i == 0
+                    && matches!(part, Part::Lit(_, false))
+                    && (value == "~" || value.starts_with("~/") || value.starts_with("~\\"))
+                {
+                    expansion::append(&mut pattern, &ctx.get("HOME"), true);
+                    value = value[1..].to_owned();
+                    present = true;
                 }
-            };
-            if value.contains('\0') {
-                return Err("NUL cannot be passed in an argument".into());
-            }
-            if dynamic && !quoted && split {
-                for c in value.chars() {
-                    if matches!(c, ' ' | '\t' | '\n') {
-                        if present {
-                            fields.push(std::mem::take(&mut current));
-                            present = false;
+                if dynamic && !quoted && split {
+                    for c in value.chars() {
+                        if matches!(c, ' ' | '\t' | '\r' | '\n') {
+                            if present {
+                                fields.push(std::mem::take(&mut pattern));
+                                present = false;
+                            }
+                        } else {
+                            pattern.push((c, false));
+                            present = true;
                         }
-                    } else {
-                        current.push(c);
-                        present = true;
                     }
+                } else {
+                    present |= quoted || !value.is_empty();
+                    expansion::append(&mut pattern, &value, quoted);
                 }
-            } else {
-                present |= quoted || !value.is_empty();
-                current.push_str(&value);
+            }
+            if present || !split {
+                fields.push(pattern);
+            }
+            for pattern in fields {
+                if split {
+                    result.extend(expansion::glob(&pattern, &ctx.cwd)?);
+                } else {
+                    result.push(pattern.iter().map(|p| p.0).collect());
+                }
+                if result.len() > MAX_ARGUMENTS {
+                    return Err("Too many expanded arguments".into());
+                }
             }
         }
-        if present {
-            fields.push(current);
-        }
-        if fields.len() > MAX_ARGUMENTS {
-            return Err("Too many expanded arguments".into());
-        }
-        Ok(fields)
+        Ok(result)
     }
     fn command(&self, node: &Node, ctx: &mut Context, mut io: Streams, merge: bool) -> i32 {
         match self.command_inner(node, ctx, &mut io, merge) {
@@ -301,8 +350,10 @@ impl Engine {
         io: &mut Streams,
         merge: bool,
     ) -> Result<i32> {
-        let Node::Command(words, redirects) = node else {
-            return Err("Internal AST error".into());
+        let (words, redirects) = match node {
+            Node::Command(words, redirects) => (words.as_slice(), redirects),
+            Node::Group(_, redirects) => (&[][..], redirects),
+            _ => return Err("Internal AST error".into()),
         };
         let mut args = Vec::new();
         let mut assignments = Vec::new();
@@ -382,6 +433,9 @@ impl Engine {
         if merge {
             io.error = io.output.try_clone().map_err(err)?;
         }
+        if let Node::Group(body, _) = node {
+            return self.run(body, &mut ctx.clone(), io);
+        }
         if args.is_empty() {
             for (key, value) in assignments {
                 ctx.set(&key, value);
@@ -394,8 +448,25 @@ impl Engine {
             &mut assigned
         };
         syntax::validate_command(&args[0])?;
-        match args[0].as_str() {
-            "true" => Ok(0),
+        match args[0].to_lowercase().as_str() {
+            "true" | ":" => Ok(0),
+            "command" if args.get(1).is_some_and(|s| s == "-v") => {
+                let mut status = 0;
+                for name in &args[2..] {
+                    if [
+                        "echo", "cd", "pwd", "true", "false", "export", "unset", ":", "command",
+                    ]
+                    .contains(&name.as_str())
+                    {
+                        writeln!(io.output, "{name}").map_err(err)?;
+                    } else if let Ok(invocation) = self.resolve(name, active) {
+                        writeln!(io.output, "{}", invocation[0]).map_err(err)?;
+                    } else {
+                        status = 1;
+                    }
+                }
+                Ok(status)
+            }
             "false" => Ok(1),
             "echo" => {
                 let no_newline = args.get(1).is_some_and(|s| s == "-n");
@@ -409,10 +480,18 @@ impl Engine {
                 Ok(0)
             }
             "cd" => {
-                if args.len() > 2 {
+                let offset = if args.get(1).is_some_and(|s| s == "--") {
+                    2
+                } else {
+                    1
+                };
+                if args.len() > offset + 1 {
                     return Err("cd expects at most one argument".into());
                 }
-                let value = args.get(1).cloned().unwrap_or_else(|| active.get("HOME"));
+                let value = args
+                    .get(offset)
+                    .cloned()
+                    .unwrap_or_else(|| active.get("HOME"));
                 let value = if value == "-" {
                     active.get("OLDPWD")
                 } else {
@@ -421,7 +500,10 @@ impl Engine {
                 if value.is_empty() {
                     return Err("cd target is empty".into());
                 }
-                let path = fs::canonicalize(active.cwd.join(value)).map_err(err)?;
+                // Keep the logical Windows path across junctions, like the
+                // previous px. absolute() normalizes . and .. without resolving
+                // symlinks; is_dir() separately verifies the destination.
+                let path = std::path::absolute(active.cwd.join(value)).map_err(err)?;
                 if !path.is_dir() {
                     return Err("cd target is not a directory".into());
                 }
@@ -433,15 +515,18 @@ impl Engine {
                 };
                 active.set("OLDPWD", active.cwd.to_string_lossy().into());
                 active.cwd = normal.into();
+                active.set("PWD", active.cwd.to_string_lossy().into());
                 Ok(0)
             }
             "export" | "unset" => {
                 for arg in &args[1..] {
                     let (key, value) = arg.split_once('=').unwrap_or((arg, ""));
-                    if !syntax::identifier(key) || (args[0] == "unset" && arg.contains('=')) {
+                    if !syntax::identifier(key)
+                        || (args[0].eq_ignore_ascii_case("unset") && arg.contains('='))
+                    {
                         return Err("Invalid environment variable name".into());
                     }
-                    if args[0] == "unset" {
+                    if args[0].eq_ignore_ascii_case("unset") {
                         active.env.remove(&key.to_uppercase());
                     } else {
                         active.set(

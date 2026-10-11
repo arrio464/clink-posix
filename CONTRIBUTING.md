@@ -34,7 +34,7 @@ The optional interactive smoke test needs Clink and a real console/PTY:
 ./tests/clink-smoke.ps1 -ClinkExe C:/path/to/clink_x64.exe
 ```
 
-It starts a separate CMD with isolated profile/scripts, runs seven checks, and exits.
+It starts a separate CMD with isolated profile/scripts, runs twenty checks, and exits.
 It does not install the Lua adapter globally. CI runs only the self-contained tests;
 passing CI does not claim that Ctrl+C or terminal rendering has been verified.
 

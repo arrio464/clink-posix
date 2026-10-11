@@ -75,7 +75,7 @@ class Checks(unittest.TestCase):
     def test_missing_recovery(self):self.same('clink_native_missing_command || echo recovered',b'recovered\n')
     def test_exitcode(self):self.same(F+' exit 7',b'',7)
     def test_static_rejection_before_side_effect(self):
-        for bad in ['source foo','echo "oops','echo hi &','echo *.txt','echo {a,b}','echo $((2+3))','echo ${A:-x}','(echo x)','echo $(source foo)','echo `pwd`','echo hi\necho there']:
+        for bad in ['source foo','echo "oops','echo hi &','echo $((2**3))','echo ${A:=x}','(echo x','echo $(source foo)','echo `pwd`']:
             with self.subTest(bad=bad):
                 p=self.runline('echo bad > marker; '+bad)
                 self.assertEqual(p.returncode,2,p.stderr)
@@ -112,10 +112,10 @@ class Checks(unittest.TestCase):
         p=subprocess.run([str(EXE),'--request',str(request)],capture_output=True,timeout=10)
         self.assertEqual(p.returncode,2)
         self.assertIn(b'64 KiB',p.stderr)
-    def test_quoted_multiline_rejection(self):
-        p=self.runline("echo 'a\nb'")
-        self.assertEqual(p.returncode,2)
-        self.assertEqual(p.stdout,b'')
+    def test_multiline(self):
+        self.same("echo 'a\nb'\necho c # comment\necho d",b'a\nb\nc\nd\n')
+    def test_line_continuation(self):
+        self.same("echo a\\\nb",b'ab\n')
     def test_manifest_rejects_batch(self):
         manifest=self.cwd/'tools.tsv';manifest.write_text('foo\tC:/example.cmd\n')
         p=subprocess.run([str(EXE),'--tools',str(manifest),'-c','echo should-not-run'],capture_output=True,timeout=10)
@@ -137,6 +137,117 @@ class Checks(unittest.TestCase):
         env=dict(os.environ,PATH=os.path.join(os.environ['SystemRoot'],'System32'))
         p=self.runline('echo hello',env=env)
         self.assertEqual((p.returncode,p.stdout),(0,b'hello\n'),p.stderr)
+
+    def test_brace_lists(self): self.same('echo pre{a,b}{1,2}post',b'prea1post prea2post preb1post preb2post\n')
+    def test_brace_nested(self): self.same('echo {a,{b,c}}',b'a b c\n')
+    def test_brace_ranges(self): self.same('echo {-2..2} {5..1..2}',b'-2 -1 0 1 2 5 3 1\n')
+    def test_brace_quotes(self): self.same('echo "{a,b}" \\{a,b\\}',b'{a,b} {a,b}\n')
+    def test_brace_limit(self):
+        p=self.runline('echo {1..999999999}')
+        self.assertEqual(p.returncode,2,p.stderr)
+    def test_assignment_no_brace_split_glob(self): self.same("CPX_A={a,b}; echo \"$CPX_A\"",b'{a,b}\n')
+    def test_tilde(self):
+        env=dict(os.environ,HOME=str(self.cwd/'a [b]'))
+        p=self.runline('echo ~ ~/child "~"',env=env)
+        self.assertEqual(p.stdout,(env['HOME']+' '+env['HOME']+'/child ~\n').encode())
+    def test_glob(self):
+        for name in ['b.txt','a.txt','.hidden.txt','other']: (self.cwd/name).touch()
+        self.same('echo *.txt "*.txt" missing*',b'a.txt b.txt *.txt missing*\n')
+    def test_glob_class(self):
+        for name in ['a.txt','b.txt','c.txt']: (self.cwd/name).touch()
+        self.same('echo [a-b].txt [!ab].txt ?.txt',b'a.txt b.txt c.txt a.txt b.txt c.txt\n')
+    def test_glob_nested(self):
+        for name in ['a','b']:
+            (self.cwd/name).mkdir();(self.cwd/name/'x.txt').touch()
+        p=self.runline('echo */*.txt')
+        self.assertEqual(p.stdout,b'a/x.txt b/x.txt\n')
+    def test_glob_quoted_prefix(self):
+        (self.cwd/'[a]').mkdir(); (self.cwd/'[a]'/'x.txt').touch()
+        p=self.runline('echo "[a]"/*.txt')
+        self.assertEqual(p.stdout,b'[a]/x.txt\n')
+        if OLD:
+            old=self.runline('echo "[a]"/*.txt',old=True)
+            self.assertEqual(old.stdout.replace(b'\\',b'/'),p.stdout)
+    def test_glob_dynamic(self):
+        (self.cwd/'x.txt').touch()
+        self.same("CPX_A='*.txt'; echo $CPX_A \"$CPX_A\"",b'x.txt *.txt\n')
+    def test_glob_ambiguous_redirect(self):
+        for name in ['a.txt','b.txt']: (self.cwd/name).write_bytes(b'keep')
+        p=self.runline('echo lost > *.txt')
+        self.assertEqual(p.returncode,2,p.stderr)
+        self.assertEqual((self.cwd/'a.txt').read_bytes(),b'keep')
+    def test_recursive_glob_rejected(self):
+        self.assertEqual(self.runline('echo **/*.txt').returncode,2)
+    def test_parameter_defaults(self):
+        self.same('unset CPX_A; echo "${CPX_A-x}" "${CPX_A:-y}" "${CPX_A+z}" "${CPX_A:+w}"; CPX_A=; echo "${CPX_A-x}" "${CPX_A:-y}" "${CPX_A+z}" "${CPX_A:+w}"',b'x y  \n y z \n')
+    def test_parameter_lazy(self):
+        self.same('CPX_A=yes; echo "${CPX_A:-$(echo bad > marker)}"',b'yes\n')
+        self.assertFalse((self.cwd/'marker').exists())
+    def test_parameter_nested(self):
+        self.same('unset CPX_A; unset CPX_B; echo "${CPX_A:-${CPX_B:-hello}}"',b'hello\n')
+    def test_parameter_default_space(self): self.same('unset CPX_A; echo "${CPX_A:-hello world}"',b'hello world\n')
+    def test_parameter_static_validation(self):
+        p=self.runline('echo bad > marker; echo "${CPX_A:-$(source nope)}"')
+        self.assertEqual(p.returncode,2,p.stderr);self.assertFalse((self.cwd/'marker').exists())
+    def test_parameter_length(self):
+        p=self.runline("CPX_A='中文abc'; echo ${#CPX_A}")
+        self.assertEqual(p.stdout,b'5\n')
+    def test_arithmetic(self): self.same('CPX_A=7; echo $((CPX_A*2+3)) $((-7/3)) $((-7%3)) $((2*(3+4)))',b'17 -2 -1 14\n')
+    def test_arithmetic_checked(self):
+        for expression in ['1/0','9223372036854775807+1']:
+            self.assertEqual(self.runline('echo $(('+expression+'))').returncode,2)
+    def test_arithmetic_variable_no_eval(self):
+        self.same("CPX_A='1+2'; echo $((CPX_A))",b'',2)
+    def test_arithmetic_short_circuit(self): self.same('false && echo $((1/0)); true',b'')
+    def test_group_scope(self): self.same('CPX_A=outer; (CPX_A=inner; echo $CPX_A); echo $CPX_A',b'inner\nouter\n')
+    def test_group_redirect_pipe(self): self.same('(echo b; echo a) | sort > out; cat out',b'a\nb\n')
+    def test_group_capture(self): self.same('echo "$( (echo nested; (echo more)) )"',b'nested\nmore\n')
+    def test_group_cd_isolated(self):
+        (self.cwd/'child').mkdir()
+        self.same('(cd child; pwd); pwd',(str(self.cwd/'child')+'\n'+str(self.cwd)+'\n').encode())
+    def test_here_string_no_expansion_lists(self): self.same('cat <<< {a,b}',b'{a,b}\n')
+    def test_here_string_empty(self): self.same('unset CPX_A; cat <<< $CPX_A',b'\n')
+    def test_literal_dollar(self): self.same('echo cost$ $',b'cost$ $\n')
+    def test_builtin_case(self): self.same('ECHO hello; TRUE',b'hello\n')
+    def test_noop(self):
+        p=self.runline(': > empty')
+        self.assertEqual(p.returncode,0,p.stderr);self.assertEqual((self.cwd/'empty').read_bytes(),b'')
+    def test_command_lookup(self):
+        p=self.runline('command -v echo cat clink_nonexistent')
+        self.assertEqual(p.returncode,1,p.stderr)
+        self.assertEqual(p.stdout.decode().splitlines(),['echo',FIXTURE.as_posix()])
+    def aliasline(self,line,aliases,old=False):
+        path=self.cwd/'aliases'
+        path.write_text(''.join(k.encode().hex()+'\t'+v.encode().hex()+'\n' for k,v in aliases.items()))
+        args=[sys.executable,str(OLD)] if old else native_args()
+        return subprocess.run(args+['--aliases',str(path),'-c',line],cwd=self.cwd,capture_output=True,timeout=20)
+    def test_alias_arguments(self):
+        aliases={'say':'echo $2 $1 $*'}
+        line='say "a b" \'中文 & %\''
+        p=self.aliasline(line,aliases)
+        self.assertEqual(p.stdout,'中文 & % a b a b 中文 & %\n'.encode())
+        if OLD: self.assertEqual(p.stdout,self.aliasline(line,aliases,True).stdout)
+    def test_alias_redirection(self):
+        p=self.aliasline('say hello',{'say':'echo $* $G out'})
+        self.assertEqual(p.returncode,0,p.stderr);self.assertEqual((self.cwd/'out').read_bytes(),b'hello\n')
+    def test_alias_nested_capture(self):
+        p=self.aliasline('echo "$(say hello)"',{'say':'echo $*'})
+        self.assertEqual(p.stdout,b'hello\n')
+    def test_alias_compound_static_rejection(self):
+        p=self.aliasline('echo bad > marker; say',{'say':'echo a $T echo b'})
+        self.assertEqual(p.returncode,2,p.stderr);self.assertFalse((self.cwd/'marker').exists())
+    def test_alias_recursion(self):
+        p=self.aliasline('a',{'a':'b','b':'a'})
+        self.assertEqual(p.returncode,2,p.stderr)
+    def test_sync_status_on_parse_failure(self):
+        path=self.cwd/'sync.cmd'
+        p=subprocess.run(native_args()+['--sync',str(path),'-c',"echo '"],cwd=self.cwd,capture_output=True,timeout=10)
+        self.assertEqual(p.returncode,2)
+        self.assertIn(b'exit /b 2',path.read_bytes())
+    def test_state_atomic_no_overwrite(self):
+        path=self.cwd/'state';path.write_text('preserve')
+        p=subprocess.run(native_args()+['--state',str(path),'-c','true'],cwd=self.cwd,capture_output=True,timeout=10)
+        self.assertEqual(p.returncode,2);self.assertEqual(path.read_text(),'preserve')
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser(add_help=False)

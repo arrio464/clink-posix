@@ -1,4 +1,4 @@
-//! Dialect v0.1. Parsing and static validation have no external side effects.
+//! Interactive grammar. Parsing and static validation have no external side effects.
 //! Expansion results never go back through this parser.
 pub type Result<T> = std::result::Result<T, String>;
 pub const MAX_INPUT: usize = 65536;
@@ -8,11 +8,14 @@ const MAX_DEPTH: usize = 16;
 pub enum Part {
     Lit(String, bool),
     Var(String, bool),
+    Parameter(String, String, Vec<Word>, bool),
+    Length(String, bool),
+    Arithmetic(crate::arithmetic::Expr, bool),
     Capture(Box<Node>, bool),
     Process(Box<Node>),
 }
 #[derive(Clone, Debug)]
-pub struct Word(pub Vec<Part>);
+pub struct Word(pub Vec<Part>, pub String);
 impl Word {
     pub fn literal(&self) -> Option<String> {
         self.0
@@ -41,6 +44,7 @@ pub enum Node {
     Conditional(Vec<(String, Node)>),
     Pipeline(Vec<Node>, Vec<bool>),
     Command(Vec<Word>, Vec<Redirect>),
+    Group(Box<Node>, Vec<Redirect>),
 }
 #[derive(Clone, Debug)]
 enum Token {
@@ -99,7 +103,13 @@ impl Lexer {
                 self.i += 1;
                 return Ok(body);
             } else if c == '(' && quote.is_none() {
-                return self.fail("Command groups and arithmetic are not in dialect v0.1");
+                self.i += 1;
+                self.depth += 1;
+                if self.depth > MAX_DEPTH {
+                    return self.fail("Group nesting limit");
+                }
+                self.substitution_body()?;
+                self.depth -= 1;
             } else {
                 self.i += 1;
             }
@@ -115,7 +125,49 @@ impl Lexer {
         }
         parts.push(Part::Lit(c.to_owned(), quoted));
     }
+    fn parameter_body(&mut self) -> Result<String> {
+        let start = self.i;
+        let mut quote = None;
+        let mut level = 1;
+        while self.i < self.chars.len() {
+            let c = self.chars[self.i];
+            if c == '\\' && self.i + 1 < self.chars.len() && quote != Some('\'') {
+                self.i += 2;
+                continue;
+            }
+            if quote == Some('\'') {
+                if c == '\'' {
+                    quote = None;
+                }
+            } else if c == '"' {
+                quote = if quote.is_some() { None } else { Some('"') };
+            } else if c == '\'' && quote.is_none() {
+                quote = Some('\'');
+            } else if self.starts("$(") {
+                self.i += 2;
+                self.depth += 1;
+                if self.depth > MAX_DEPTH {
+                    return self.fail("Parameter nesting limit");
+                }
+                self.substitution_body()?;
+                self.depth -= 1;
+                continue;
+            } else if c == '{' && quote.is_none() {
+                level += 1;
+            } else if c == '}' && quote.is_none() {
+                level -= 1;
+                if level == 0 {
+                    let body = self.chars[start..self.i].iter().collect();
+                    self.i += 1;
+                    return Ok(body);
+                }
+            }
+            self.i += 1;
+        }
+        self.fail("Unclosed parameter")
+    }
     fn word(&mut self) -> Result<Word> {
+        let start = self.i;
         let mut parts = Vec::new();
         let mut quote = None;
         while self.i < self.chars.len() {
@@ -157,7 +209,17 @@ impl Lexer {
                 }
             }
             if self.starts("$((") {
-                return self.fail("Arithmetic is not in dialect v0.1");
+                self.i += 2;
+                let body = self.substitution_body()?;
+                let body = body
+                    .strip_prefix('(')
+                    .and_then(|s| s.strip_suffix(')'))
+                    .ok_or("Invalid arithmetic expansion")?;
+                parts.push(Part::Arithmetic(
+                    crate::arithmetic::parse(body)?,
+                    quote.is_some(),
+                ));
+                continue;
             }
             if self.starts("$(") || (quote.is_none() && self.starts("<(")) {
                 self.i += 2;
@@ -175,18 +237,24 @@ impl Lexer {
                 let mut name = String::new();
                 if self.i < self.chars.len() && self.chars[self.i] == '{' {
                     self.i += 1;
-                    while self.i < self.chars.len() && self.chars[self.i] != '}' {
-                        name.push(self.chars[self.i]);
-                        self.i += 1;
-                    }
-                    if self.i == self.chars.len() {
-                        return self.fail("Unclosed parameter");
-                    }
-                    self.i += 1;
+                    let body = self.parameter_body()?;
+                    parts.push(parameter(&body, quote.is_some(), self.depth + 1)?);
+                    continue;
                 } else if self.i < self.chars.len() && self.chars[self.i] == '?' {
                     name.push('?');
                     self.i += 1;
                 } else {
+                    if self.i == self.chars.len()
+                        || !(self.chars[self.i].is_ascii_alphabetic() || self.chars[self.i] == '_')
+                    {
+                        if self.i < self.chars.len()
+                            && "'@*#!0123456789".contains(self.chars[self.i])
+                        {
+                            return self.fail("Unsupported dollar expansion");
+                        }
+                        Self::lit(&mut parts, "$", quote.is_some());
+                        continue;
+                    }
                     while self.i < self.chars.len()
                         && (self.chars[self.i].is_ascii_alphanumeric() || self.chars[self.i] == '_')
                     {
@@ -205,13 +273,8 @@ impl Lexer {
             if c == '`' {
                 return self.fail("Use $(...) instead of backticks");
             }
-            if quote.is_none() {
-                if c.is_whitespace() || ";&|<>()".contains(c) {
-                    break;
-                }
-                if "*?[]{}~".contains(c) {
-                    return self.fail("Globs, braces and tilde expansion are not in dialect v0.1; quote literal characters");
-                }
+            if quote.is_none() && (c.is_whitespace() || ";&|<>()".contains(c)) {
+                break;
             }
             Self::lit(&mut parts, &c.to_string(), quote.is_some());
             self.i += 1;
@@ -222,21 +285,30 @@ impl Lexer {
         if parts.is_empty() {
             return self.fail("Expected a word");
         }
-        Ok(Word(parts))
+        Ok(Word(parts, self.chars[start..self.i].iter().collect()))
     }
     fn tokens(mut self) -> Result<Vec<Token>> {
         let mut out = Vec::new();
         while self.i < self.chars.len() {
             let c = self.chars[self.i];
-            if c == '\n' || c == '\r' {
-                return self.fail("Only a single interactive line is supported");
+            if c == '\n' {
+                if !out.is_empty()
+                    && !matches!(out.last(), Some(Token::Op(op)) if [";", "&&", "||", "|", "|&", "("].contains(&op.as_str()))
+                {
+                    out.push(Token::Op(";".into()));
+                }
+                self.i += 1;
+                continue;
             }
-            if c == ' ' || c == '\t' {
+            if c == ' ' || c == '\t' || c == '\r' {
                 self.i += 1;
                 continue;
             }
             if c == '#' {
-                break;
+                while self.i < self.chars.len() && self.chars[self.i] != '\n' {
+                    self.i += 1;
+                }
+                continue;
             }
             if !self.starts("<(")
                 && let Some(op) = OPS.iter().find(|op| self.starts(op))
@@ -253,6 +325,7 @@ impl Lexer {
 struct Parser {
     tokens: Vec<Token>,
     i: usize,
+    depth: usize,
 }
 impl Parser {
     fn op(&self) -> &str {
@@ -263,7 +336,7 @@ impl Parser {
     }
     fn sequence(&mut self) -> Result<Node> {
         let mut nodes = Vec::new();
-        while self.i < self.tokens.len() {
+        while self.i < self.tokens.len() && self.op() != ")" {
             nodes.push(self.conditional()?);
             if self.op() != ";" {
                 break;
@@ -297,12 +370,31 @@ impl Parser {
     fn command(&mut self) -> Result<Node> {
         let mut words = Vec::new();
         let mut redirs = Vec::new();
+        let group = if self.op() == "(" {
+            self.depth += 1;
+            if self.depth > MAX_DEPTH {
+                return Err("Group nesting limit".into());
+            }
+            self.i += 1;
+            let body = self.sequence()?;
+            if self.op() != ")" {
+                return Err("Unclosed command group".into());
+            }
+            self.i += 1;
+            self.depth -= 1;
+            Some(Box::new(body))
+        } else {
+            None
+        };
         while self.i < self.tokens.len() {
-            if [";", "&&", "||", "|", "|&"].contains(&self.op()) {
+            if [";", "&&", "||", "|", "|&", ")"].contains(&self.op()) {
                 break;
             }
             match self.tokens[self.i].clone() {
                 Token::Word(w) => {
+                    if group.is_some() {
+                        return Err("Unexpected word after group".into());
+                    }
                     words.push(w);
                     self.i += 1;
                 }
@@ -332,6 +424,9 @@ impl Parser {
                 }
             }
         }
+        if let Some(body) = group {
+            return Ok(Node::Group(body, redirs));
+        }
         if words.is_empty() && redirs.is_empty() {
             return Err("Expected a command".into());
         }
@@ -352,13 +447,52 @@ pub fn validate_command(name: &str) -> Result<()> {
     .contains(&name)
     {
         return Err(format!(
-            "{name} is outside dialect v0.1; use an explicit shell"
+            "{name} is outside the interactive subset; use an explicit shell"
         ));
     }
     Ok(())
 }
 pub fn parse(text: &str) -> Result<Node> {
     parse_depth(text, 0)
+}
+fn parameter(body: &str, quoted: bool, depth: usize) -> Result<Part> {
+    if depth > MAX_DEPTH {
+        return Err("Parameter nesting limit".into());
+    }
+    if body == "?" || identifier(body) {
+        return Ok(Part::Var(body.into(), quoted));
+    }
+    if let Some(name) = body.strip_prefix('#')
+        && identifier(name)
+    {
+        return Ok(Part::Length(name.into(), quoted));
+    }
+    let end = body
+        .find(|c: char| !(c.is_ascii_alphanumeric() || c == '_'))
+        .ok_or("Invalid parameter")?;
+    let name = &body[..end];
+    if !identifier(name) {
+        return Err("Invalid parameter name".into());
+    }
+    let tail = &body[end..];
+    let op = [":-", ":+", "-", "+"]
+        .into_iter()
+        .find(|op| tail.starts_with(op))
+        .ok_or("Unsupported parameter operator")?;
+    let tokens = Lexer {
+        chars: tail[op.len()..].chars().collect(),
+        i: 0,
+        depth,
+    }
+    .tokens()?;
+    let words = tokens
+        .into_iter()
+        .map(|t| match t {
+            Token::Word(w) => Ok(w),
+            _ => Err("Operators are not supported inside parameter defaults".into()),
+        })
+        .collect::<Result<Vec<_>>>()?;
+    Ok(Part::Parameter(name.into(), op.into(), words, quoted))
 }
 fn parse_depth(text: &str, depth: usize) -> Result<Node> {
     if text.len() > MAX_INPUT || text.contains('\0') {
@@ -367,16 +501,17 @@ fn parse_depth(text: &str, depth: usize) -> Result<Node> {
     if depth > MAX_DEPTH {
         return Err("Substitution nesting exceeds 16".into());
     }
-    if text.contains(['\r', '\n']) {
-        return Err("Multi-line source is outside dialect v0.1".into());
-    }
     let tokens = Lexer {
         chars: text.chars().collect(),
         i: 0,
         depth,
     }
     .tokens()?;
-    let mut parser = Parser { tokens, i: 0 };
+    let mut parser = Parser {
+        tokens,
+        i: 0,
+        depth,
+    };
     let node = parser.sequence()?;
     if parser.i != parser.tokens.len() {
         return Err(format!("Unexpected operator: {}", parser.op()));
